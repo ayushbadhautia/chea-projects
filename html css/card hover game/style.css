@@ -1,0 +1,43 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+html,body{
+  width: 100%;
+  height: 100%;
+  background-color: rgb(47, 47, 47);
+}
+img{
+  width: 300px;
+}
+
+.parent{
+  height: 100%;
+  position: relative;
+
+}
+.child{
+
+  position: absolute;
+  top: 20%;
+  left: 39%;
+}
+.child2{
+  transform: rotate(10deg);
+}
+.child3{
+  transform: rotate(-10deg);
+}
+.child4{
+  transform: rotate(20deg);
+}
+.child5{
+  transform: rotate(-20deg);
+}
+.child1{
+  transform: rotate(30deg);
+}
+.child1:hover,.child2:hover,.child3:hover,.child4:hover,.child5:hover,.child6:hover{
+  z-index: 1;
+  cursor: pointer;
+}

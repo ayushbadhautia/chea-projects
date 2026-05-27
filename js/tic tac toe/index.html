@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Tic Tac Toe</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body,
+    html {
+      height: 90%;
+      width: 100%;
+      background-color: black;
+    }
+
+    .main {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 110px 55px 0px 55px;
+      margin: 2px 0px;
+      background-color: rgb(255, 255, 255);
+    }
+
+    .btn:hover {
+      background-color: rgb(185, 185, 185);
+      cursor: pointer;
+    }
+
+    .image {
+      height: 110px;
+      margin: 2px 0px;
+    }
+
+    .head {
+      color: yellow;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      text-align: center;
+    }
+
+    .show {
+      font-size: 60px;
+      color: white;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      text-align: center;
+    }
+    .reset-btn{
+      background-color: yellow;
+      font-size: 25px;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 20px;
+      position: absolute;
+      left: 50px;
+    }
+    .reset-btn:hover{
+      background-color: yellowgreen;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="head">Tic Tac Toe</h1>
+  <div class="main">
+    <div class="first-row">
+      <button class="btn button1" data-btn-no="1"></button>
+      <button class="btn button2" data-btn-no="2"></button>
+      <button class="btn button3" data-btn-no="3"></button>
+    </div>
+    <div class="second-row">
+      <button class="btn button4" data-btn-no="4"></button>
+      <button class="btn button5" data-btn-no="5"></button>
+      <button class="btn button6" data-btn-no="6"></button>
+    </div>
+    <div class="third-row">
+      <button class="btn button7" data-btn-no="7"></button>
+      <button class="btn button8" data-btn-no="8"></button>
+      <button class="btn button9" data-btn-no="9"></button>
+    </div>
+  </div>
+  <button class="reset-btn">Reset</button>
+  <div class="show">
+
+  </div>
+
+
+
+  <script>
+    let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let buttonNumber;
+    let comp;
+    let gameResult = 0;//1 win,0 tie,-1 lose
+
+    function computerMove() {
+      let flag = 0;
+      for (let i = 0; i < 9; i++) {
+        if (arr[i] === 0) {
+          flag = 1;
+        }
+      }
+      if (flag === 0) {
+        return;
+        //game is over
+      }
+      comp = Math.floor((Math.random() * 9));
+      if (arr[comp] === 0) {
+        arr[comp] = 2;
+        setTimeout(() => {
+          document.querySelector(`.button${comp + 1}`).outerHTML = `<img class="image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcFsE9os91rgNAC1PgilGgEZ8T3nCwtWomcA&s">`;
+        }, 500);
+      } else {
+        computerMove();
+      }
+
+    }
+
+    function myMove(a) {
+      let flag = 0;
+      for (let i = 0; i < 9; i++) {
+        if (arr[i] === 0) {
+          flag = 1;
+        }
+      }
+      if (flag === 0) {
+        return;
+        //game is over
+      }
+
+      if (arr[a - 1] === 0) {
+        arr[a - 1] = 1;
+      } else {
+        return;
+      }
+      document.querySelector(`.button${a}`).outerHTML = `<img class="image" src="https://e7.pngegg.com/pngimages/255/685/png-clipart-tic-tac-toe-computer-icons-others-miscellaneous-angle.png">`;
+    }
+
+    function result() {
+
+
+      for (let i = 0; i < 9; i++) {
+
+        if ((arr[i] === 1 && arr[i + 3] === 1 && arr[i + 6] === 1) && (i < 3)) {
+          gameResult = 1;
+        } else if ((arr[i] === 1 && arr[i + 1] === 1 && arr[i + 2] === 1) && ((i === 0) || (i === 3) || (i === 6))) {
+          gameResult = 1;
+        } else if (arr[0] === 1 && arr[4] === 1 && arr[8] === 1) {
+          gameResult = 1;
+        } else if (arr[6] === 1 && arr[4] === 1 && arr[2] === 1) {
+          gameResult = 1;
+        }
+
+        if ((arr[i] === 2 && arr[i + 3] === 2 && arr[i + 6] === 2) && (i < 3)) {
+          gameResult = -1;
+        } else if ((arr[i] === 2 && arr[i + 1] === 2 && arr[i + 2] === 2) && ((i === 0) || (i === 3) || (i === 6))) {
+          gameResult = -1;
+        } else if (arr[0] === 2 && arr[4] === 2 && arr[8] === 2) {
+          gameResult = -1;
+        } else if (arr[6] === 2 && arr[4] === 2 && arr[2] === 2) {
+          gameResult = -1;
+        }
+      }
+      let flag = 1;
+      for (let i = 0; i < 9; i++) {
+        if (arr[i] === 0) {
+          flag = 0;
+        }
+      }
+
+      if (gameResult === 1) {
+        document.querySelector('.show').innerHTML = `You won!`;
+      } else if (gameResult === -1) {
+        document.querySelector('.show').innerHTML = `You lose!`;
+      } else if (flag === 1) {
+        document.querySelector('.show').innerHTML = `Tied!`;
+      }
+    }
+
+    function playGame(){
+      document.querySelectorAll('.btn').forEach(bttn => {
+
+        bttn.addEventListener('click', () => {
+          buttonNumber = Number(bttn.dataset.btnNo);
+          myMove(buttonNumber);
+          result();
+          console.log(gameResult);
+          computerMove();
+          console.log(arr);
+          result();
+          console.log(gameResult);
+
+        });
+      });
+    }
+
+    document.querySelector('.reset-btn').addEventListener('click', () => {
+      arr = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+      gameResult = 0;
+      document.querySelector('.main').innerHTML = `
+      <div class="first-row">
+      <button class="btn button1" data-btn-no="1"></button>
+      <button class="btn button2" data-btn-no="2"></button>
+      <button class="btn button3" data-btn-no="3"></button>
+    </div>
+    <div class="second-row">
+      <button class="btn button4" data-btn-no="4"></button>
+      <button class="btn button5" data-btn-no="5"></button>
+      <button class="btn button6" data-btn-no="6"></button>
+    </div>
+    <div class="third-row">
+      <button class="btn button7" data-btn-no="7"></button>
+      <button class="btn button8" data-btn-no="8"></button>
+      <button class="btn button9" data-btn-no="9"></button>
+    </div>
+      `;
+      document.querySelector('.show').innerHTML = ``;
+      playGame();
+    });
+    playGame();
+  </script>
+</body>
+
+</html>

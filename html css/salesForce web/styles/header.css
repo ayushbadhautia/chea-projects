@@ -1,0 +1,148 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+html,body{
+  width: 100%;
+  height: 100%;
+  background-color: skyblue;
+}
+.header{
+  font-family: sans-serif;
+  width: 100%;
+  background-color: white;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  position: fixed;
+}
+.login-logo,
+.globe-icon{
+  height: 20px;
+  color: black;
+  cursor: pointer;
+}
+.salesforce-logo,.salesforce-logo-notext{
+  height: 55px;
+  padding: 0px 30px;
+  cursor: pointer;
+}
+.salesforce-logo-notext{
+  position: absolute;
+  left: 0px;
+  visibility: hidden;
+  cursor: pointer;
+}
+.contactus-button{
+  position: absolute;
+  right: 15px;
+  padding: 15px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  background-color: green;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.contactus-button:hover{
+  background-color: rgb(81, 21, 21);
+}
+.login-section{
+  position: absolute;
+  right: 180px;
+  height: 20px;
+  padding: 10px 5px;
+}
+.login-section:hover{
+  background-color: aqua;
+
+  border-radius: 25%;
+}
+.login-text{
+  font-size: 15px;
+}
+.globe-icon{
+  position: absolute;
+  right: 280px;
+  padding: 7px;
+}
+.globe-icon:hover{
+  background-color: aqua;
+  border-radius: 50%;
+}
+.callus-section{
+  position: absolute;
+  right: 325px;
+}
+
+.ask-agentic-button{
+  position: absolute;
+  right: 470px;
+  padding: 15px 20px;
+  background-color: white;
+  font-size: 18px;
+  width:20vw;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 5px;
+  border-color: blue;
+  cursor: pointer;
+}
+
+.search-icon{
+  height: 20px;
+  padding: 0px 10px;
+}
+.link-tag{
+  margin: 0px 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.link-tag:hover{
+  color: blue;
+}
+
+
+
+@media (max-width:1248px){
+  .salesforce-logo-notext{
+    visibility: visible;
+  }
+  .link-tag{
+    visibility: hidden;
+  }
+  .callus-section{
+    visibility: hidden;
+  }
+  .globe-icon{
+    visibility: hidden;
+  }
+  .login-text{
+    visibility: hidden;
+  }
+  .ask-agentic-button{
+    width: 45vw;
+    text-align: left;
+    right: 350px;
+  }
+}
+
+@media (max-width:948px){
+  .header{
+    height: 101px;
+
+  }
+  .ask-agentic-button{
+    visibility: hidden;
+  }
+  .login-logo{
+    height: 30px;
+  }
+  .login-section{
+    right: 150px;
+  }
+}
