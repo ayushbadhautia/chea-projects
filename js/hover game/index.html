@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    body,
+    html {
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      color: white;
+    }
+
+    .parent {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .child {
+      width: 200px;
+      height: 200px;
+      margin: 8px 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px rgb(255, 255, 255) solid;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="parent">
+    <div>
+      <div class="child child1">
+        <h1>1</h1>
+      </div>
+      <div class="child child3">
+        <h1>3</h1>
+      </div>
+    </div>
+    <div>
+      <div class="child child2">
+        <h1>2</h1>
+      </div>
+      <div class="child child4">
+        <h1>4</h1>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    //no 01
+    document.querySelector('.child1').addEventListener('mouseenter',()=>{
+      document.querySelector('.child1').innerHTML=`<h1>${Math.floor(Math.random()*100)}</h1>`;
+    });
+    document.querySelector('.child1').addEventListener('mouseleave',()=>{
+      document.querySelector('.child1').innerHTML=`<h1>1</h1>`;
+    });
+
+
+    //no2
+    let flag = 0;
+    document.querySelector('.child2').addEventListener('mouseenter',()=>{
+      if(flag===0){
+        document.querySelector('.child2').style.backgroundColor = "red";
+        flag = 1;
+      }else{
+        document.querySelector('.child2').style.backgroundColor = "blue";
+        flag = 0;
+      }
+    });
+    document.querySelector('.child2').addEventListener('mouseleave',()=>{
+      document.querySelector('.child2').style.backgroundColor = "black";
+    });
+
+
+    //no 03
+    document.querySelector('.child3').addEventListener('mouseenter',()=>{
+      
+      document.querySelector('.child3').style.backgroundColor = `rgb(${Math.floor((Math.random()*256))},${Math.floor((Math.random()*256))},${Math.floor((Math.random()*256))})` ;
+    });
+    document.querySelector('.child3').addEventListener('mouseleave',()=>{
+      document.querySelector('.child3').style.backgroundColor = "black";
+    });
+
+    //no4
+    document.querySelector('.child4').addEventListener('click',()=>{
+      document.querySelector('.child1').style.backgroundColor = `rgb(255,0,0,${Math.random()})`;
+      document.querySelector('.child2').style.backgroundColor = `rgb(0,255,0,${Math.random()})`;
+      document.querySelector('.child3').style.backgroundColor = `rgb(0,0,255,${Math.random()})`;
+    });
+    document.querySelector('.child4').addEventListener('mouseleave',()=>{
+      document.querySelector('.child1').style.backgroundColor = "black";
+      document.querySelector('.child2').style.backgroundColor = "black";
+      document.querySelector('.child3').style.backgroundColor = "black";
+    });
+  </script>
+</body>
+
+</html>
