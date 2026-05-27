@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Rock-Paper-Scissors</title>
+</head>
+
+<body>
+  <p>Rock Paper Scissors</p>
+  <button onclick="
+      mine = 'Rock';
+      playGame();
+    ">Rock</button>
+
+  <button onclick="
+      mine = 'Paper';
+      playGame();
+    ">Paper</button>
+
+  <button onclick="
+      mine = 'Scissor';
+      playGame();
+    ">Scissors</button>
+  <script>
+    let mine;
+
+    
+
+    function pickComputerMove() {
+      let comp;
+      comp = Math.random();
+      if (comp >= 0 && comp < 0.33) {
+        comp = 'Rock';
+      } else if (comp >= 0.33 && comp < 0.66) {
+        comp = 'Paper';
+      } else {
+        comp = 'Scissor';
+      }
+      return comp;
+    }
+
+    function playGame() {
+      let result;
+      let comp = pickComputerMove();
+      if (mine === 'Rock') {
+        if (comp === 'Paper') {
+          result = 'Lost';
+        } else if (comp === 'Rock') {
+          result = 'Tie';
+        } else {
+          result = 'Won';
+        }
+        alert(`Your Choice: ${mine}\nComputers Choice: ${comp}\n ${result}`);
+      } else if (mine === 'Paper') {
+        if (comp === 'Paper') {
+          result = 'Tie';
+        } else if (comp === 'Rock') {
+          result = 'Won';
+        } else {
+          result = 'Lost';
+        }
+
+        alert(`Your Choice: ${mine}\nComputers Choice: ${comp}\n ${result}`);
+      } else {
+        if (comp === 'Paper') {
+          result = 'Won';
+        } else if (comp === 'Rock') {
+          result = 'Lost';
+        } else {
+          result = 'Tie';
+        }
+        alert(`Your Choice: ${mine}\nComputers Choice: ${comp}\n ${result}`);
+      }
+    }
+  </script>
+</body>
+
+</html>
