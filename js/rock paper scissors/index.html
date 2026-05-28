@@ -21,10 +21,25 @@
       mine = 'Scissor';
       playGame();
     ">Scissors</button>
+  
+  <button onclick="
+    score.loses = 0;
+    score.ties = 0;
+    score.wins = 0;
+    localStorage.removeItem('score');
+  ">Reset Score</button>
+
   <script>
-    let mine;
+    const score =(JSON.parse(localStorage.getItem('score')))||(
+      {
+        wins:0,
+        loses:0,
+        ties:0
+      }
+    );
 
     
+    let mine;
 
     function pickComputerMove() {
       let comp;
@@ -50,7 +65,7 @@
         } else {
           result = 'Won';
         }
-        alert(`Your Choice: ${mine}\nComputers Choice: ${comp}\n ${result}`);
+        
       } else if (mine === 'Paper') {
         if (comp === 'Paper') {
           result = 'Tie';
@@ -60,7 +75,7 @@
           result = 'Lost';
         }
 
-        alert(`Your Choice: ${mine}\nComputers Choice: ${comp}\n ${result}`);
+        
       } else {
         if (comp === 'Paper') {
           result = 'Won';
@@ -69,8 +84,17 @@
         } else {
           result = 'Tie';
         }
-        alert(`Your Choice: ${mine}\nComputers Choice: ${comp}\n ${result}`);
+        
       }
+      if(result==='Won'){
+        score.wins++;
+      }else if(result==='Lost'){
+        score.loses++;
+      }else{
+        score.ties++;
+      }
+      alert(`Your Choice: ${mine}\nComputers Choice: ${comp}\n ${result}\nWins : ${score.wins} ,Losses : ${score.loses} ,Ties : ${score.ties}`);
+      localStorage.setItem('score',JSON.stringify(score));
     }
   </script>
 </body>
