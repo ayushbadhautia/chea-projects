@@ -21,7 +21,11 @@
       mine = 'Scissor';
       playGame();
     ">Scissors</button>
-  
+    <p id="shoe"></p>
+    <br>
+  <p id="result"></p>
+  <p id="score"></p>
+
   <button onclick="
     score.loses = 0;
     score.ties = 0;
@@ -37,12 +41,18 @@
         ties:0
       }
     );
-
+    
+    function showResult(){
+      document.querySelector('#shoe').innerHTML = `${result}`;
+      document.querySelector('#result').innerHTML = `Yours : ${mine}, Computers : ${comp}\n`;
+      document.querySelector('#score').innerHTML = `Wins : ${score.wins}, Loses : ${score.loses}, Ties : ${score.ties}\n`;
+    }
     
     let mine;
-
+    let comp;
+    let result;
     function pickComputerMove() {
-      let comp;
+      
       comp = Math.random();
       if (comp >= 0 && comp < 0.33) {
         comp = 'Rock';
@@ -55,7 +65,7 @@
     }
 
     function playGame() {
-      let result;
+      
       let comp = pickComputerMove();
       if (mine === 'Rock') {
         if (comp === 'Paper') {
@@ -93,8 +103,11 @@
       }else{
         score.ties++;
       }
-      alert(`Your Choice: ${mine}\nComputers Choice: ${comp}\n ${result}\nWins : ${score.wins} ,Losses : ${score.loses} ,Ties : ${score.ties}`);
+      showResult();
+      /*alert(`Your Choice: ${mine}\nComputers Choice: ${comp}\n ${result}\nWins : ${score.wins} ,Losses : ${score.loses} ,Ties : ${score.ties}`);*/
+      
       localStorage.setItem('score',JSON.stringify(score));
+      
     }
   </script>
 </body>
