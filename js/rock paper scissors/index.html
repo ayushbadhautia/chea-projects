@@ -3,56 +3,124 @@
 
 <head>
   <title>Rock-Paper-Scissors</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+    }
+
+    p {
+      font-size: 20px;
+
+    }
+
+    .hed {
+      font-size: 50px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: bold;
+    }
+
+    .move {
+      height: 100px;
+      background-color: black;
+      border-radius: 50px;
+    }
+
+    .movechose {
+      height: 75px;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .move-btn {
+      background-color: transparent;
+      border-radius: 100px;
+    }
+
+    .reset {
+      font-size: 15px;
+      padding: 7px 10px;
+      border-radius: 10px;
+      background-color: yellow;
+    }
+
+    #shoe {
+      font-size: 40px;
+      color: yellow;
+    }
+    .parent{
+      display: flex;
+      justify-content: center;
+      
+    }
+    .child{
+      background-color: rgb(30, 30, 30);
+      padding: 0px 50px 50px 50px;
+      margin: 50px;
+      border-radius: 10px;
+    }
+  </style>
 </head>
 
 <body>
-  <p>Rock Paper Scissors</p>
-  <button onclick="
+  <div class="parent">
+    <div class="child">
+      <p class="hed">Rock Paper Scissors</p>
+      <button onclick="
       mine = 'Rock';
       playGame();
-    ">Rock</button>
+    " class="move-btn"><img src="images/rock.png" alt="rock" class="move"></button>
 
-  <button onclick="
+      <button onclick="
       mine = 'Paper';
       playGame();
-    ">Paper</button>
+    " class="move-btn"><img src="images/paper.png" alt="paper" class="move"></button>
 
-  <button onclick="
-      mine = 'Scissor';
-      playGame();
-    ">Scissors</button>
-    <p id="shoe"></p>
-    <br>
-  <p id="result"></p>
-  <p id="score"></p>
+      <button onclick="
+    mine = 'Scissor';
+    playGame();
+  " class="move-btn"><img src="images/scissor.png" alt="scissor" class="move"></button>
 
-  <button onclick="
+      <p id="shoe">....</p>
+      <p id="result">Yours : <img src="" alt="">,<img src="" alt=""> : Computers</p>
+      <p id="score"></p>
+
+      <button onclick="
     score.loses = 0;
     score.ties = 0;
     score.wins = 0;
     localStorage.removeItem('score');
-  ">Reset Score</button>
+    document.querySelector('#score').innerHTML = `Wins : ${score.wins}, Loses : ${score.loses}, Ties : ${score.ties}\n`;
+  " class="reset">Reset Score</button>
+    </div>
+  </div>
 
   <script>
-    const score =(JSON.parse(localStorage.getItem('score')))||(
+    const score = (JSON.parse(localStorage.getItem('score'))) || (
       {
-        wins:0,
-        loses:0,
-        ties:0
+        wins: 0,
+        loses: 0,
+        ties: 0
       }
     );
-    
-    function showResult(){
+
+    document.querySelector('#score').innerHTML = `Wins : ${score.wins}, Loses : ${score.loses}, Ties : ${score.ties}\n`;
+
+    function showResult() {
       document.querySelector('#shoe').innerHTML = `${result}`;
-      document.querySelector('#result').innerHTML = `Yours : ${mine}, Computers : ${comp}\n`;
+
+      document.querySelector('#result').innerHTML = `Yours : <img class = "movechose move-btn" src = "images/${mine}.png"> , <img class = "movechose move-btn" src = "images/${comp}.png"> :  Computers\n`;
+
       document.querySelector('#score').innerHTML = `Wins : ${score.wins}, Loses : ${score.loses}, Ties : ${score.ties}\n`;
     }
-    
+
     let mine;
     let comp;
     let result;
     function pickComputerMove() {
-      
+
       comp = Math.random();
       if (comp >= 0 && comp < 0.33) {
         comp = 'Rock';
@@ -65,7 +133,7 @@
     }
 
     function playGame() {
-      
+
       let comp = pickComputerMove();
       if (mine === 'Rock') {
         if (comp === 'Paper') {
@@ -75,7 +143,7 @@
         } else {
           result = 'Won';
         }
-        
+
       } else if (mine === 'Paper') {
         if (comp === 'Paper') {
           result = 'Tie';
@@ -85,7 +153,7 @@
           result = 'Lost';
         }
 
-        
+
       } else {
         if (comp === 'Paper') {
           result = 'Won';
@@ -94,20 +162,20 @@
         } else {
           result = 'Tie';
         }
-        
+
       }
-      if(result==='Won'){
+      if (result === 'Won') {
         score.wins++;
-      }else if(result==='Lost'){
+      } else if (result === 'Lost') {
         score.loses++;
-      }else{
+      } else {
         score.ties++;
       }
       showResult();
       /*alert(`Your Choice: ${mine}\nComputers Choice: ${comp}\n ${result}\nWins : ${score.wins} ,Losses : ${score.loses} ,Ties : ${score.ties}`);*/
-      
-      localStorage.setItem('score',JSON.stringify(score));
-      
+
+      localStorage.setItem('score', JSON.stringify(score));
+
     }
   </script>
 </body>
